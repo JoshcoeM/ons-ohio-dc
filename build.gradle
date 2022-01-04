@@ -21,18 +21,12 @@ ext {
 
 dependencies {
 	implementation 'com.microsoft.azure:spring-data-cosmosdb:2.3.0'
-	implementation 'com.azure.spring:azure-spring-boot-starter-cosmos'
+	implementation 'com.azure.spring:azure-spring-boot-starter-cosmos:3.5.0'
 	implementation 'org.springframework.kafka:spring-kafka'
 	implementation group: 'io.confluent', name: 'kafka-avro-serializer', version: '5.3.0'
 	implementation 'com.manifestcorp:ons-domain:0.0.1-SNAPSHOT'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "com.azure.spring:azure-spring-boot-bom:${azureVersion}"
-	}
 }
 
 test {

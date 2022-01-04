@@ -1,6 +1,7 @@
 package com.manifestcorp.onsohiodc.listener;
 
 import com.manifestcorp.onsdomain.Order;
+import com.manifestcorp.onsohiodc.domain.CosmosOrder;
 import com.manifestcorp.onsohiodc.repositories.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,6 @@ public class OnsOhioListener {
     @KafkaListener(topics = "${k.topic.consumer.name}")
     public void listener(Order order){
         logger.info(order.toString());
-        orderRepository.save(order);
+        orderRepository.save(order).subscribe();
     }
 }
