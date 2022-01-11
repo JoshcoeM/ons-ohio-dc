@@ -6,7 +6,6 @@ import com.manifestcorp.onsohiodc.repositories.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +18,10 @@ public class OnsOhioListener {
 
 
     @KafkaListener(topics = "${k.topic.consumer.name}")
-    public void listener(Order order){
+    public void listener(Order order) {
         logger.info(order.toString());
-        orderRepository.save(order).subscribe();
+        CosmosOrder cOrder = new CosmosOrder(order);
+        logger.info(cOrder.toString());
+        orderRepository.save(cOrder).subscribe((o) -> logger.info("hi"));
     }
 }
